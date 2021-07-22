@@ -14,7 +14,16 @@ export class UsersService {
   ];
 
   create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+    const id = this.users[this.users.length - 1]?.id + 1 || 1;
+
+    const user: User = {
+      id,
+      ...createUserDto,
+    };
+
+    this.users.push(user);
+
+    return user;
   }
 
   findAll() {
